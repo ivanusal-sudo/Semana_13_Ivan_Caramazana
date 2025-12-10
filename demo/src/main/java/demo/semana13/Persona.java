@@ -23,6 +23,25 @@ public class Persona {
         this.email = email;
     }
 
+    public static Persona factory(String cadena){
+        if(cadena == null){
+            throw new IllegalArgumentException("LA CADENA NO PUEDE SER NULA");
+        }
+
+        String[] partes = cadena.split(",");
+        
+        if(partes.length != 4){
+            throw new IllegalArgumentException("LOS ARGUMENTOS NO SON VALIDOS");
+        }
+
+        try{
+            int edad = Integer.parseInt(partes[2]);
+            return new Persona(partes[0], partes[1], edad, partes[3]);
+        } catch (Exception e){
+            throw new IllegalArgumentException("LOS ARGUMENTOS NO SON VALIDOS");
+        }
+    }
+
     /**
      * Getter del email
      * @return *el email de la persona
@@ -30,4 +49,18 @@ public class Persona {
     public String getEmail() {
         return email;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellidos;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    
 }
